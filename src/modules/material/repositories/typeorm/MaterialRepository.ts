@@ -42,8 +42,6 @@ export default class MaterialRepository implements IMaterialRepository {
     }
 
     async buscarTodos(): Promise<Material[] | []> {
-        // const result = await this.ormRepositorio.find();
-        // console.log({ result })
-        return []
+        return await this.ormRepositorio.find();
     }
 }

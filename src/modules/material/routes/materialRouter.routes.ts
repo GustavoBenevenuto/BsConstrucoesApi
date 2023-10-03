@@ -9,6 +9,14 @@ import { factoryBuscarMaterialService } from '../factories/factoryBuscarMaterial
 
 const materialRouter = Router();
 
+materialRouter.get('/todos', async (request, response) => {
+    const buscarMaterialService = factoryBuscarMaterialService()
+
+    const materialRetornado = await buscarMaterialService.buscarTodos()
+
+    return response.json(materialRetornado);
+});
+
 materialRouter.post('/', async (request, response) => {
     const materialCorpoSchema = z.object({
         nome: z.string().min(3),
@@ -82,14 +90,6 @@ materialRouter.get('/:id', async (request, response) => {
     const buscarMaterialService = factoryBuscarMaterialService()
 
     const materialRetornado = await buscarMaterialService.porId(id)
-
-    return response.json(materialRetornado);
-});
-
-materialRouter.get('/todos', async (request, response) => {
-    const buscarMaterialService = factoryBuscarMaterialService()
-
-    const materialRetornado = await buscarMaterialService.buscarTodos()
 
     return response.json(materialRetornado);
 });
