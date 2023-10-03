@@ -8,10 +8,10 @@ const orm = {
     //   "database": "simula_drive",
     "ssl": { "rejectUnauthorized": false },
     "entities": [
-        `./${process.env.FOLDER_ORM}/models/*.${process.env.FILE_EXTENSION}`
+        `./${process.env.FOLDER_ENTITIES_ORM}/*/models/*.${process.env.FILE_EXTENSION}`
     ],
     "migrations": [
-        `./${process.env.FOLDER_ORM}/database/migrations/*.${process.env.FILE_EXTENSION}`
+        `./${process.env.FOLDER_MIGRATIONS_ORM}/*.${process.env.FILE_EXTENSION}`
     ],
     "cli": {
         "migrationsDir": "./src/database/migrations"

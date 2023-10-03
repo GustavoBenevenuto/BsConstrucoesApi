@@ -12,7 +12,7 @@ export default class Usuario {
     email: string;
 
     @Column({ nullable: false })
-    senha: string;
+    hash_senha: string;
 
     @CreateDateColumn({ default: new Date() })
     criado_em: Date;
