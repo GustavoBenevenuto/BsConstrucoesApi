@@ -1,0 +1,17 @@
+# docker run --name bs-construcoes-api-pg -e POSTGRESQL_USERNAME=db_docker -e POSTGRESQL_PASSWORD=db_docker -e 
+# POSTGRESQL_DATABASE=bs-construcoes-api -p 5432:5432 bitnami/postgresql
+
+version: '3'
+
+services: 
+  bs-construcoes-api-pg:
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment: 
+      - POSTGRES_USERNAME=db_docker
+      - POSTGRES_PASSWORD=db_docker
+      - POSTGRES_DATABASE=bs-construcoes-api
+
+
+      
