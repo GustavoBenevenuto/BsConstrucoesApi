@@ -8,7 +8,7 @@ export default class Usuario {
     @Column({ nullable: false })
     nome: string;
 
-    @Column({ nullable: false })
+    @Column({ nullable: false, unique: true })
     email: string;
 
     @Column({ nullable: false })

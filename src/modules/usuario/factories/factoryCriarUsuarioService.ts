@@ -1,4 +1,5 @@
-import UsuarioRepository from "../repositories/typeorm/usuarioRepository";
+
+import UsuarioRepository from "../repositories/typeorm/UsuarioRepository";
 import { CriarUsuarioService } from "../services/CriarUsuarioService";
 
 export function factoryCriarUsuarioService() {

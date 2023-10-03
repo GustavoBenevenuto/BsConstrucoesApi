@@ -1,10 +1,10 @@
 import { FindOneOptions } from "typeorm";
 import Usuario from "../models/Usuario";
-import ICreateUsuarioDTO from "../dtos/ICreateUsuarioDTO";
+import ICriarUsuarioDTO from "../dtos/ICriarUsuarioDTO";
 
 export interface IUsuarioRepository {
-    buscarPorId(id: number): Promise<Usuario | undefined>;
+    buscarPorId(id: string): Promise<Usuario | undefined>;
     buscarPorEmail(email: string): Promise<Usuario | undefined>;
-    create(dados: ICreateUsuarioDTO): Promise<Usuario>;
+    create(dados: ICriarUsuarioDTO): Promise<Usuario>;
     save(usuario: Usuario): Promise<Usuario>;
 }

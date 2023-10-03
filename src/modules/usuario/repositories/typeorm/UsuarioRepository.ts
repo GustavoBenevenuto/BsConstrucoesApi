@@ -1,7 +1,7 @@
 import Usuario from "../../models/Usuario"
 import { EntityRepository, Repository, getRepository } from "typeorm";
 import { IUsuarioRepository } from "../IUsuarioRepositorio";
-import ICreateUsuarioDTO from "../../dtos/ICreateUsuarioDTO";
+import ICriarUsuarioDTO from "../../dtos/ICriarUsuarioDTO";
 
 
 
@@ -19,11 +19,11 @@ export default class UsuarioRepository implements IUsuarioRepository {
         });
     }
 
-    async buscarPorId(id: number): Promise<Usuario | undefined> {
+    async buscarPorId(id: string): Promise<Usuario | undefined> {
         return await this.ormRepositorio.findOne(id);
     }
 
-    async create({ email, nome, senha }: ICreateUsuarioDTO): Promise<Usuario> {
+    async create({ email, nome, senha }: ICriarUsuarioDTO): Promise<Usuario> {
         const usuario = this.ormRepositorio.create({ nome, email, hash_senha: senha });
 
         return await this.ormRepositorio.save(usuario);

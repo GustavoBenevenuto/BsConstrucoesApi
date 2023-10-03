@@ -1,8 +1,8 @@
 import { hash } from "bcryptjs";
 import Usuario from "../models/Usuario";
 import { IUsuarioRepository } from "../repositories/IUsuarioRepositorio";
-import ICreateUsuarioDTO from "../dtos/ICreateUsuarioDTO";
-import AppError from "../../../errors/AppError";
+import ICriarUsuarioDTO from "../dtos/ICriarUsuarioDTO";
+import { UsuarioJaExisteErro } from "../errors/UsuarioJaExisteErro";
 interface IUsuarioRetornoService {
     usuario: Usuario
 }
@@ -10,11 +10,11 @@ interface IUsuarioRetornoService {
 export class CriarUsuarioService {
     constructor(private usuarioRepository: IUsuarioRepository) { }
 
-    async execute({ nome, email, senha }: ICreateUsuarioDTO): Promise<IUsuarioRetornoService> {
+    async execute({ nome, email, senha }: ICriarUsuarioDTO): Promise<IUsuarioRetornoService> {
         const usuarioExiste = await this.usuarioRepository.buscarPorEmail(email);
 
         if (usuarioExiste) {
-            throw new AppError('Usuário já existe!', 400);
+            throw new UsuarioJaExisteErro();
         }
 
         const hashSenha = await hash(senha, 3)
