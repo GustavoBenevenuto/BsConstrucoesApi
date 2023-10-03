@@ -1,6 +1,6 @@
 import { hash } from "bcryptjs";
 import Usuario from "../models/Usuario";
-import { IUsuarioRepository } from "../repositories/IUsuarioRepositorio";
+import { IUsuarioRepository } from "../repositories/IUsuarioRepository";
 import ICriarUsuarioDTO from "../dtos/ICriarUsuarioDTO";
 import { UsuarioJaExisteErro } from "../errors/UsuarioJaExisteErro";
 interface IUsuarioRetornoService {
@@ -24,8 +24,6 @@ export class CriarUsuarioService {
             nome,
             senha: hashSenha
         })
-
-        await this.usuarioRepository.save(usuario)
 
         return {
             usuario,

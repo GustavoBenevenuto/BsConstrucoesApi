@@ -1,6 +1,6 @@
 import { hash } from "bcryptjs";
 import Usuario from "../models/Usuario";
-import { IUsuarioRepository } from "../repositories/IUsuarioRepositorio";
+import { IUsuarioRepository } from "../repositories/IUsuarioRepository";
 import ICriarUsuarioDTO from "../dtos/ICriarUsuarioDTO";
 import AppError from "../../../errors/AppError";
 import IEditarUsuarioDTO from "../dtos/IEditarUsuarioDTO";
@@ -21,8 +21,7 @@ export class EditarUsuarioService {
         }
 
         usuario.nome = nome
-
-        await this.usuarioRepository.save(usuario)
+        usuario.atualizado_em = new Date()
 
         return {
             usuario,

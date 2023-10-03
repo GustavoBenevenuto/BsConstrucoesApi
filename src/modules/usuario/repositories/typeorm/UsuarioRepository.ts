@@ -1,6 +1,6 @@
 import Usuario from "../../models/Usuario"
 import { EntityRepository, Repository, getRepository } from "typeorm";
-import { IUsuarioRepository } from "../IUsuarioRepositorio";
+import { IUsuarioRepository } from "../IUsuarioRepository";
 import ICriarUsuarioDTO from "../../dtos/ICriarUsuarioDTO";
 
 

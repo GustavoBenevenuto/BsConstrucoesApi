@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import ICriarUsuarioDTO from "../../dtos/ICriarUsuarioDTO";
 import Usuario from "../../models/Usuario";
-import { IUsuarioRepository } from "../IUsuarioRepositorio";
+import { IUsuarioRepository } from "../IUsuarioRepository";
 
 export class EmMemoriaUsuarioRepository implements IUsuarioRepository {
 
