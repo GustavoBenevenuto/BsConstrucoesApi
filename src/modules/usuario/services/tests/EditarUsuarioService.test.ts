@@ -23,7 +23,7 @@ describe('Serviço: CriarUsuario', () => {
 
         const usuarioTeste = await emMemoriaUsuarioRepository.save(usuarioCriadoTeste)
 
-        const { usuario } = await editarUsuarioService.execute({
+        const usuario = await editarUsuarioService.execute({
             nome: 'Gusta',
             id: usuarioTeste.id
         })

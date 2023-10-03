@@ -33,11 +33,21 @@ export class EmMemoriaUsuarioRepository implements IUsuarioRepository {
             atualizado_em: new Date(),
         } as Usuario
 
+        this.usuarios.push(usuario)
+
         return usuario
     }
 
     async save(usuario: Usuario): Promise<Usuario> {
         this.usuarios.push(usuario)
         return usuario
+    }
+
+    async delete(id: string): Promise<number> {
+        this.usuarios = this.usuarios.filter(usuario => usuario.id != id)
+
+        const usuarioEncontrado = this.usuarios.find(usuario => usuario.id == id)
+
+        return usuarioEncontrado ? 0 : 1
     }
 }

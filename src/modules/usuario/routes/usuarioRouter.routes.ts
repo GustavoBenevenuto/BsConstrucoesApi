@@ -3,6 +3,8 @@ import { z } from "zod";
 import { factoryCriarUsuarioService } from '../factories/factoryCriarUsuarioService';
 import { factoryEditarUsuarioService } from '../factories/factoryEditarUsuarioService';
 import { factoryBuscarUsuarioService } from '../factories/factoryBuscarUsuarioService';
+import { IUsuarioSemSenha } from '../interfaces/IUsuarioSemSenha';
+import { factoryDeletarUsuarioService } from '../factories/factoryDeletarUsuarioService';
 
 const usuarioRouter = Router();
 
@@ -17,9 +19,10 @@ usuarioRouter.post('/', async (request, response) => {
 
     const criarUsuarioService = factoryCriarUsuarioService()
 
-    const usuarioCriado = await criarUsuarioService.execute(usuario)
+    const usuarioRetornado: IUsuarioSemSenha = await criarUsuarioService.execute(usuario)
+    delete usuarioRetornado.hash_senha
 
-    return response.json(usuarioCriado);
+    return response.json(usuarioRetornado);
 });
 
 usuarioRouter.patch('/:id', async (request, response) => {
@@ -36,14 +39,23 @@ usuarioRouter.patch('/:id', async (request, response) => {
 
     const editarUsuarioService = factoryEditarUsuarioService()
 
-    const usuario = await editarUsuarioService.execute({ nome, id })
+    const usuarioRetornado: IUsuarioSemSenha = await editarUsuarioService.execute({ nome, id })
+    delete usuarioRetornado.hash_senha
 
-    return response.json(usuario);
+    return response.json(usuarioRetornado);
 });
 
 usuarioRouter.delete('/:id', async (request, response) => {
+    const usuarioParamsSchema = z.object({
+        id: z.string(),
+    })
 
-    return response.json({});
+    const { id } = usuarioParamsSchema.parse(request.params)
+
+    const deletarUsuarioService = factoryDeletarUsuarioService()
+    const deletado = await deletarUsuarioService.execute(id)
+
+    return response.json({ deletado });
 });
 
 usuarioRouter.get('/:id', async (request, response) => {
@@ -55,9 +67,10 @@ usuarioRouter.get('/:id', async (request, response) => {
 
     const buscarUsuarioService = factoryBuscarUsuarioService()
 
-    const usuario = await buscarUsuarioService.execute(id)
+    const usuarioRetornado: IUsuarioSemSenha = await buscarUsuarioService.execute(id)
+    delete usuarioRetornado.hash_senha
 
-    return response.json(usuario);
+    return response.json(usuarioRetornado);
 });
 
 export default usuarioRouter;

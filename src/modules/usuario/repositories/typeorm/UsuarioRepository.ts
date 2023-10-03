@@ -32,4 +32,11 @@ export default class UsuarioRepository implements IUsuarioRepository {
     async save(usuario: Usuario): Promise<Usuario> {
         return await this.ormRepositorio.save(usuario);
     }
+
+    async delete(id: string): Promise<number> {
+        const resultado = await this.ormRepositorio.delete(id);
+
+        // affected == 0 Nenhum registro deletado
+        return resultado.affected ?? 0
+    }
 }

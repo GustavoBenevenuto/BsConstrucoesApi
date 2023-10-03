@@ -15,7 +15,7 @@ describe('Serviço: CriarUsuario', () => {
     });
 
     it('Deve ser possível cadastrar um usuário', async () => {
-        const { usuario } = await criarUsuarioService.execute({
+        const usuario = await criarUsuarioService.execute({
             nome: 'Gusta',
             email: 'gusta@gmail.com',
             senha: '123456'
@@ -25,7 +25,7 @@ describe('Serviço: CriarUsuario', () => {
     })
 
     it('A senha do usuário deve ser um hash após realizar o cadastro na aplicação', async () => {
-        const { usuario } = await criarUsuarioService.execute({
+        const usuario = await criarUsuarioService.execute({
             nome: 'Gusta',
             email: 'gusta@gmail.com',
             senha: '123456'
@@ -39,7 +39,7 @@ describe('Serviço: CriarUsuario', () => {
     it('Não pode cadastrar com e-mails já existente', async () => {
         const email = 'gusta@gmail.com'
 
-        const { usuario } = await criarUsuarioService.execute({
+        const usuario = await criarUsuarioService.execute({
             nome: 'Gusta',
             email,
             senha: '123456'
