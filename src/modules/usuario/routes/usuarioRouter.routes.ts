@@ -16,7 +16,7 @@ usuarioRouter.post('/', async (request, response) => {
 
     const criarUsuarioService = factoryCriarUsuarioService()
 
-    const usuarioCriado = criarUsuarioService.execute(usuario)
+    const usuarioCriado = await criarUsuarioService.execute(usuario)
 
     return response.json(usuarioCriado);
 });
