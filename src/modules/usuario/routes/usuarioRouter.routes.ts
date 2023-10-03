@@ -10,7 +10,7 @@ const usuarioRouter = Router();
 
 usuarioRouter.post('/', async (request, response) => {
     const usuarioCorpoSchema = z.object({
-        nome: z.string().min(6),
+        nome: z.string().min(3),
         email: z.string().email(),
         senha: z.string().min(6),
     })
