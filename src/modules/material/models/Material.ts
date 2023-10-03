@@ -13,7 +13,7 @@ export default class Material {
     descricao: string;
 
     @Column({ nullable: true })
-    imagem: string;
+    imagem?: string;
 
     @Column({ nullable: false })
     preco: number;

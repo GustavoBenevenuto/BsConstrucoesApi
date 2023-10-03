@@ -33,4 +33,16 @@ export class EmMemoriaMaterialRepository implements IMaterialRepository {
         this.materiais.push(material)
         return material
     }
+
+    async delete(id: string): Promise<number> {
+        this.materiais = this.materiais.filter(material => material.id != id)
+
+        const materialEncontrado = this.materiais.find(material => material.id == id)
+
+        return materialEncontrado ? 0 : 1
+    }
+
+    async buscarTodos(): Promise<Material[] | []> {
+        return this.materiais
+    }
 }

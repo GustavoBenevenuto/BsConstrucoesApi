@@ -27,7 +27,7 @@ usuarioRouter.post('/', async (request, response) => {
 
 usuarioRouter.patch('/:id', async (request, response) => {
     const usuarioCorpoSchema = z.object({
-        nome: z.string().min(6),
+        nome: z.string().min(3),
     })
 
     const usuarioParamsSchema = z.object({
