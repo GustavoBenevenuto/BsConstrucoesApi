@@ -7,20 +7,16 @@ import IEditarUsuarioDTO from "../dtos/IEditarUsuarioDTO";
 import { UsuarioNaoEncontradoErro } from "../errors/UsuarioNaoEncontradoErro";
 import { IUsuarioSemSenha } from "../interfaces/IUsuarioSemSenha";
 
-export class EditarUsuarioService {
+
+export class BuscarUsuarioService {
     constructor(private usuarioRepository: IUsuarioRepository) { }
 
-    async execute({ nome, id }: IEditarUsuarioDTO): Promise<IUsuarioSemSenha> {
+    async execute(id: string): Promise<IUsuarioSemSenha> {
         const usuario = await this.usuarioRepository.buscarPorId(id);
 
         if (!usuario) {
             throw new UsuarioNaoEncontradoErro()
         }
-
-        usuario.nome = nome
-        usuario.atualizado_em = new Date()
-
-        await this.usuarioRepository.save(usuario)
 
         const usuarioRetornado: IUsuarioSemSenha = usuario
         delete usuarioRetornado.hash_senha

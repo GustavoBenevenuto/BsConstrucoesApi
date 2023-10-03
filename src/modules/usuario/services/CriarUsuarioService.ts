@@ -3,14 +3,12 @@ import Usuario from "../models/Usuario";
 import { IUsuarioRepository } from "../repositories/IUsuarioRepository";
 import ICriarUsuarioDTO from "../dtos/ICriarUsuarioDTO";
 import { UsuarioJaExisteErro } from "../errors/UsuarioJaExisteErro";
-interface IUsuarioRetornoService {
-    usuario: Usuario
-}
+import { IUsuarioSemSenha } from "../interfaces/IUsuarioSemSenha";
 
 export class CriarUsuarioService {
     constructor(private usuarioRepository: IUsuarioRepository) { }
 
-    async execute({ nome, email, senha }: ICriarUsuarioDTO): Promise<IUsuarioRetornoService> {
+    async execute({ nome, email, senha }: ICriarUsuarioDTO): Promise<IUsuarioSemSenha> {
         const usuarioExiste = await this.usuarioRepository.buscarPorEmail(email);
 
         if (usuarioExiste) {
@@ -25,8 +23,9 @@ export class CriarUsuarioService {
             senha: hashSenha
         })
 
-        return {
-            usuario,
-        };
+        const usuarioRetornado: IUsuarioSemSenha = usuario
+        delete usuarioRetornado.hash_senha
+
+        return usuarioRetornado
     }
 };

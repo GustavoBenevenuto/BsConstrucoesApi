@@ -1,10 +1,8 @@
 import { Router } from 'express';
-import AppError from '../../../errors/AppError';
 import { z } from "zod";
 import { factoryCriarUsuarioService } from '../factories/factoryCriarUsuarioService';
-import { UsuarioNaoEncontradoErro } from '../errors/UsuarioNaoEncontradoErro';
-import { ParametrosInvalidosErro } from '../errors/ParametrosInvalidosErro';
 import { factoryEditarUsuarioService } from '../factories/factoryEditarUsuarioService';
+import { factoryBuscarUsuarioService } from '../factories/factoryBuscarUsuarioService';
 
 const usuarioRouter = Router();
 
@@ -25,20 +23,39 @@ usuarioRouter.post('/', async (request, response) => {
 });
 
 usuarioRouter.patch('/:id', async (request, response) => {
-    const id = request.params.id;
     const usuarioCorpoSchema = z.object({
         nome: z.string().min(6),
     })
 
-    if (!id) {
-        throw new ParametrosInvalidosErro()
-    }
+    const usuarioParamsSchema = z.object({
+        id: z.string(),
+    })
 
     const { nome } = usuarioCorpoSchema.parse(request.body)
+    const { id } = usuarioParamsSchema.parse(request.params)
 
     const editarUsuarioService = factoryEditarUsuarioService()
 
-    const { usuario } = await editarUsuarioService.execute({ nome, id })
+    const usuario = await editarUsuarioService.execute({ nome, id })
+
+    return response.json(usuario);
+});
+
+usuarioRouter.delete('/:id', async (request, response) => {
+
+    return response.json({});
+});
+
+usuarioRouter.get('/:id', async (request, response) => {
+    const usuarioParamsSchema = z.object({
+        id: z.string(),
+    })
+
+    const { id } = usuarioParamsSchema.parse(request.params)
+
+    const buscarUsuarioService = factoryBuscarUsuarioService()
+
+    const usuario = await buscarUsuarioService.execute(id)
 
     return response.json(usuario);
 });
