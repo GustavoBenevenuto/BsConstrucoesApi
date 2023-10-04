@@ -1,98 +1,18 @@
 import { Router } from 'express';
-import AppError from '../../../errors/AppError';
-import { z } from "zod";
-import { factoryCriarMaterialService } from '../factories/factoryCriarMaterialService';
-import Material from '../models/Material';
-import { factoryEditarMaterialService } from '../factories/factoryEditarMaterialService';
-import { factoryDeletarMaterialService } from '../factories/factoryDeletarMaterialService';
-import { factoryBuscarMaterialService } from '../factories/factoryBuscarMaterialService';
-import { IAtributos } from '../interfaces/IAtributos';
+import { MaterialController } from '../controllers/MaterialController';
 
 const materialRouter = Router();
 
-materialRouter.get('/todos', async (request, response) => {
-    const buscarMaterialService = factoryBuscarMaterialService()
+const materialController = new MaterialController()
 
-    const materialRetornado = await buscarMaterialService.buscarTodos()
+materialRouter.get('/todos', materialController.buscarTodos);
 
-    return response.json(materialRetornado);
-});
+materialRouter.post('/', materialController.criar);
 
-materialRouter.post('/', async (request, response) => {
-    const materialCorpoSchema = z.object({
-        nome: z.string().min(3),
-        descricao: z.string().min(3),
-        preco: z.number(),
-        imagem: z.string().optional(),
-        atributos: z.array(
-            z.object({
-                chave: z.string(),
-                valor: z.string(),
-            })
-        ).optional(),
-    })
+materialRouter.patch('/:id', materialController.editar);
 
-    const material = materialCorpoSchema.parse(request.body)
+materialRouter.delete('/:id', materialController.deletar);
 
-    const criarMaterialService = factoryCriarMaterialService()
-
-    const materialCriado = await criarMaterialService.execute(material as Material)
-
-    return response.json(materialCriado);
-});
-
-materialRouter.patch('/:id', async (request, response) => {
-    const materialCorpoSchema = z.object({
-        nome: z.string().min(3),
-        descricao: z.string().min(3),
-        preco: z.number(),
-        imagem: z.string().optional(),
-        atributos: z.array(
-            z.object({
-                chave: z.string(),
-                valor: z.string(),
-            })
-        ).optional(),
-    })
-
-    const materialParamsSchema = z.object({
-        id: z.string(),
-    })
-
-    const { descricao, nome, preco, atributos, imagem } = materialCorpoSchema.parse(request.body)
-    const { id } = materialParamsSchema.parse(request.params)
-
-    const editarMaterialService = factoryEditarMaterialService()
-
-    const materialRetornado = await editarMaterialService.execute({ descricao, nome, preco, atributos: atributos ? atributos as any : [], imagem, id })
-    return response.json(materialRetornado);
-});
-
-materialRouter.delete('/:id', async (request, response) => {
-    const materialParamsSchema = z.object({
-        id: z.string(),
-    })
-
-    const { id } = materialParamsSchema.parse(request.params)
-
-    const deletarMaterialService = factoryDeletarMaterialService()
-    const deletado = await deletarMaterialService.execute(id)
-
-    return response.json({ deletado });
-});
-
-materialRouter.get('/:id', async (request, response) => {
-    const materialParamsSchema = z.object({
-        id: z.string(),
-    })
-
-    const { id } = materialParamsSchema.parse(request.params)
-
-    const buscarMaterialService = factoryBuscarMaterialService()
-
-    const materialRetornado = await buscarMaterialService.porId(id)
-
-    return response.json(materialRetornado);
-});
+materialRouter.get('/:id', materialController.buscar);
 
 export default materialRouter;

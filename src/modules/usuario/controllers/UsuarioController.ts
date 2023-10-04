@@ -6,7 +6,7 @@ import { factoryEditarUsuarioService } from '../factories/factoryEditarUsuarioSe
 import { factoryBuscarUsuarioService } from '../factories/factoryBuscarUsuarioService';
 import { factoryDeletarUsuarioService } from '../factories/factoryDeletarUsuarioService';
 
-export default class UsuarioController {
+export class UsuarioController {
     public async criar(request: Request, response: Response): Promise<Response> {
         const usuarioCorpoSchema = z.object({
             nome: z.string().min(3),
@@ -59,7 +59,7 @@ export default class UsuarioController {
         return response.json(usuarioRetornado);
     }
 
-    public async excluir(request: Request, response: Response): Promise<Response> {
+    public async deletar(request: Request, response: Response): Promise<Response> {
         const usuarioParamsSchema = z.object({
             id: z.string(),
         })

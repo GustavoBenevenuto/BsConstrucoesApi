@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import UsuarioController from '../controllers/UsuarioController';
+import { UsuarioController } from '../controllers/UsuarioController';
 
 const usuarioRouter = Router();
 
@@ -9,7 +9,7 @@ usuarioRouter.post('/', usuarioController.criar);
 
 usuarioRouter.patch('/:id', usuarioController.editar);
 
-usuarioRouter.delete('/:id', usuarioController.excluir);
+usuarioRouter.delete('/:id', usuarioController.deletar);
 
 usuarioRouter.get('/:id', usuarioController.buscar);
 
