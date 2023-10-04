@@ -6,6 +6,7 @@ import Material from '../models/Material';
 import { factoryEditarMaterialService } from '../factories/factoryEditarMaterialService';
 import { factoryDeletarMaterialService } from '../factories/factoryDeletarMaterialService';
 import { factoryBuscarMaterialService } from '../factories/factoryBuscarMaterialService';
+import { IAtributos } from '../interfaces/IAtributos';
 
 const materialRouter = Router();
 
@@ -63,7 +64,7 @@ materialRouter.patch('/:id', async (request, response) => {
 
     const editarMaterialService = factoryEditarMaterialService()
 
-    const materialRetornado = await editarMaterialService.execute({ descricao, nome, preco, atributos: atributos ? [] : atributos, imagem, id })
+    const materialRetornado = await editarMaterialService.execute({ descricao, nome, preco, atributos: atributos ? atributos as any : [], imagem, id })
     return response.json(materialRetornado);
 });
 
