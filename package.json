@@ -35,7 +35,7 @@
         "serve": "ts-node-dev --inspect --no-deps src/server.ts",
         "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
         "build": "tsc",
-        "start": "node dist/server.js",
+        "start": "node dist/src/server.js",
         "test": "vitest run",
         "test:watch": "vitest",
         "test:coverage": "vitest run --coverage"

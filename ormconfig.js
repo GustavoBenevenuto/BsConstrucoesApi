@@ -2,14 +2,9 @@
 const orm = {
     "type": "postgres",
     "url": process.env.DATABASE_URL,
-    //   "host": "localhost",
-    //   "port": 5432,
-    //   "username": "postgres",
-    //   "password": "postgres",
-    //   "database": "simula_drive",
     "ssl": { "rejectUnauthorized": false },
     "entities": [
-        `./${process.env.FOLDER_ENTITIES_ORM}/*/models/*.${process.env.FILE_EXTENSION}`
+        `./${process.env.FOLDER_ENTITIES_ORM}/*/models/*.${process.env.FILE_EXTENSION}`,
     ],
     "migrations": [
         `./${process.env.FOLDER_MIGRATIONS_ORM}/*.${process.env.FILE_EXTENSION}`
