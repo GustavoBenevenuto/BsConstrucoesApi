@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { UsuarioController } from '../controllers/UsuarioController';
+import garantirAutenticacao from '../../shared/middlewares/garantirAutenticacao';
 
 const usuarioRouter = Router();
 
