@@ -43,10 +43,30 @@ app.use((erro: AppError | ZodError, request: Request, response: Response, next: 
 });
 
 app.listen(process.env.PORT || 3333, () => {
-    console.log(' ');
-    console.log(' ---------------------------- ');
-    console.log('| Servidor rodando...        |');
-    console.log('| http://localhost:3333/     |');
-    console.log(' ---------------------------- ');
-    console.log(' ');
+    if (process.env.ENVIRONMENT == 'desenvolvimento') {
+        console.log(' ');
+        console.log(' ---------------------------- ');
+        console.log('| Servidor rodando...        |');
+        console.log('| http://localhost:3333/     |');
+        console.log(' ---------------------------- ');
+        console.log(process.env.DATABASE_URL, "\n",
+            process.env.FOLDER_ENTITIES_ORM, "\n",
+            process.env.FOLDER_MIGRATIONS_ORM, "\n",
+            process.env.FILE_EXTENSION, "\n",
+            process.env.ENVIRONMENT, "\n",
+            process.env.PORT)
+        console.log(' ');
+    } else {
+        console.log(' ');
+        console.log(' ---------------------------- ');
+        console.log('| Servidor rodando...        |');
+        console.log(' ---------------------------- ');
+        console.log(' ');
+        console.log(process.env.DATABASE_URL, "\n",
+            process.env.FOLDER_ENTITIES_ORM, "\n",
+            process.env.FOLDER_MIGRATIONS_ORM, "\n",
+            process.env.FILE_EXTENSION, "\n",
+            process.env.ENVIRONMENT, "\n",
+            process.env.PORT)
+    }
 });
