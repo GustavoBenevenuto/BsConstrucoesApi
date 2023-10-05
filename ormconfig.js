@@ -1,3 +1,4 @@
+
 const orm = {
     "type": "postgres",
     "url": process.env.DATABASE_URL,
@@ -18,7 +19,7 @@ const orm = {
     }
 }
 
-if (process.env.ENVIRONMENT == 'development')
+if (process.env.ENVIRONMENT == 'desenvolvimento')
     delete orm.ssl;
 
 module.exports = orm;
