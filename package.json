@@ -5,6 +5,9 @@
     "main": "index.js",
     "author": "Gustavo Benevenuto",
     "license": "MIT",
+    "engines": {
+        "node": "20"
+    },
     "dependencies": {
         "@types/bcryptjs": "^2.4.4",
         "axios": "^0.21.1",
