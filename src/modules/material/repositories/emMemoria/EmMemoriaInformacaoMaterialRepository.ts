@@ -44,4 +44,12 @@ export class EmMemoriaInformacaoInformacaoMaterialRepository implements IInforma
     async buscarTodos(): Promise<InformacaoMaterial[] | []> {
         return this.informacaoMateriais
     }
+
+    async buscarPorIdMaterial(idMaterial: string): Promise<InformacaoMaterial | undefined> {
+        const informacaoInformacaoMaterial = this.informacaoMateriais.find((informacaoInformacaoMaterial) => informacaoInformacaoMaterial.material && informacaoInformacaoMaterial.material.id == idMaterial)
+        if (!informacaoInformacaoMaterial) {
+            return undefined
+        }
+        return informacaoInformacaoMaterial
+    }
 }

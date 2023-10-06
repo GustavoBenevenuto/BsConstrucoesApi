@@ -18,6 +18,10 @@ export default class InformacaoMaterialRepository implements IInformacaoMaterial
         return await this.ormRepositorio.findOne(id);
     }
 
+    async buscarPorIdMaterial(idMaterial: string): Promise<InformacaoMaterial | undefined> {
+        return await this.ormRepositorio.findOne({ where: { material: { id: idMaterial } } });
+    }
+
     async create({ material, preco, quantidade }: ICriarInformacaoMaterialDTO): Promise<InformacaoMaterial> {
         const informacaoMaterial = this.ormRepositorio.create({ material, preco, quantidade });
 

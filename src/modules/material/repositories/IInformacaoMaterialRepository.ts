@@ -4,6 +4,7 @@ import ICriarInformacaoMaterialDTO from "../dtos/ICriarInformacaoMaterialDTO";
 
 export interface IInformacaoMaterialRepository {
     buscarPorId(id: string): Promise<InformacaoMaterial | undefined>;
+    buscarPorIdMaterial(idMaterial: string): Promise<InformacaoMaterial | undefined>;
     create(dados: ICriarInformacaoMaterialDTO): Promise<InformacaoMaterial>;
     delete(id: string): Promise<number>;
     save(usuario: InformacaoMaterial): Promise<InformacaoMaterial>;
