@@ -9,13 +9,13 @@ interface IMaterialRetornoService {
 }
 
 interface ICriarMaterialInformacaoMaterialDTO extends ICriarMaterialDTO {
-    informacaoMaterial: ICriarInformacaoMaterialDTO
+    informacao_material: ICriarInformacaoMaterialDTO
 }
 
 export class CriarMaterialService {
     constructor(private materialRepository: IMaterialRepository, private informacaoMaterialRepository: IInformacaoMaterialRepository) { }
 
-    async execute({ nome, descricao, atributos, imagem, informacaoMaterial }: ICriarMaterialInformacaoMaterialDTO): Promise<IMaterialRetornoService> {
+    async execute({ nome, descricao, atributos, imagem, informacao_material }: ICriarMaterialInformacaoMaterialDTO): Promise<IMaterialRetornoService> {
         const material = await this.materialRepository.create({
             nome,
             descricao,
@@ -25,8 +25,8 @@ export class CriarMaterialService {
 
         const infoMaterial = await this.informacaoMaterialRepository.create({
             material,
-            preco: informacaoMaterial.preco,
-            quantidade: informacaoMaterial.quantidade
+            preco: informacao_material.preco,
+            quantidade: informacao_material.quantidade
         })
 
         material.informacao_material = infoMaterial

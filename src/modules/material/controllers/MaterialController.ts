@@ -17,7 +17,7 @@ export class MaterialController {
                     valor: z.string(),
                 })
             ).optional(),
-            informacaoMaterial: z.object({
+            informacao_material: z.object({
                 material: z.any(),
                 quantidade: z.number(),
                 preco: z.number(),
