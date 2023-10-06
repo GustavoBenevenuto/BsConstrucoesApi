@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { z } from 'zod';
 import { factoryBuscarMaterialService } from '../factories/factoryBuscarMaterialService';
 import { factoryCriarMaterialService } from '../factories/factoryCriarMaterialService';
-import Material from '../models/Material';
 import { factoryEditarMaterialService } from '../factories/factoryEditarMaterialService';
 import { factoryDeletarMaterialService } from '../factories/factoryDeletarMaterialService';
 
@@ -18,13 +17,18 @@ export class MaterialController {
                     valor: z.string(),
                 })
             ).optional(),
+            informacaoMaterial: z.object({
+                material: z.any(),
+                quantidade: z.number(),
+                preco: z.number(),
+            })
         })
 
         const material = materialCorpoSchema.parse(request.body)
 
         const criarMaterialService = factoryCriarMaterialService()
 
-        const materialCriado = await criarMaterialService.execute(material as Material)
+        const materialCriado = await criarMaterialService.execute(material as any)
 
         return response.json(materialCriado);
     }

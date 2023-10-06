@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, OneToOne } from 'typeorm';
 import { IAtributos } from '../interfaces/IAtributos';
+import InformacaoMaterial from './InformacaoMaterial';
 
 @Entity('tb_material')
 export default class Material {
@@ -18,9 +19,12 @@ export default class Material {
     @Column({ type: 'jsonb', nullable: false, default: () => "'[]'" })
     atributos?: IAtributos[];
 
-    @CreateDateColumn({ nullable: false, default: new Date() })
+    @OneToOne(type => InformacaoMaterial, material => Material)
+    informacaoMaterial?: InformacaoMaterial
+
+    @CreateDateColumn({ nullable: false, default: () => 'CURRENT_TIMESTAMP' })
     criado_em: Date;
 
-    @CreateDateColumn({ nullable: false, default: new Date() })
+    @CreateDateColumn({ nullable: false, default: () => 'CURRENT_TIMESTAMP' })
     atualizado_em: Date;
 }
