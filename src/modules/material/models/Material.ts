@@ -18,9 +18,9 @@ export default class Material {
     @Column({ type: 'jsonb', nullable: false, default: () => "'[]'" })
     atributos?: IAtributos[];
 
-    @CreateDateColumn({ nullable: false, default: () => 'CURRENT_TIMESTAMP' })
+    @CreateDateColumn({ nullable: false, default: new Date() })
     criado_em: Date;
 
-    @CreateDateColumn({ nullable: false, default: () => 'CURRENT_TIMESTAMP' })
+    @CreateDateColumn({ nullable: false, default: new Date() })
     atualizado_em: Date;
 }
