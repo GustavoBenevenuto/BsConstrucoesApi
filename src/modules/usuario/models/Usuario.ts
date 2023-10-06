@@ -14,9 +14,9 @@ export default class Usuario {
     @Column({ nullable: false })
     hash_senha: string;
 
-    @CreateDateColumn({ nullable: false, default: new Date() })
+    @CreateDateColumn({ nullable: false, default: () => 'CURRENT_TIMESTAMP' })
     criado_em: Date;
 
-    @CreateDateColumn({ nullable: false, default: new Date() })
+    @CreateDateColumn({ nullable: false, default: () => 'CURRENT_TIMESTAMP' })
     atualizado_em: Date;
 }
