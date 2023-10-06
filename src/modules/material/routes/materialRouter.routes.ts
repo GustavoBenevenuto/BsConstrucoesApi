@@ -6,7 +6,7 @@ const materialRouter = Router();
 
 const materialController = new MaterialController()
 
-materialRouter.use(garantirAutenticacao)
+// materialRouter.use(garantirAutenticacao)
 
 materialRouter.get('/todos', materialController.buscarTodos);
 
