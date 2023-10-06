@@ -14,12 +14,6 @@ export default class MaterialRepository implements IMaterialRepository {
         this.ormRepositorio = getRepository(Material);
     }
 
-    async buscarPorEmail(email: string): Promise<Material | undefined> {
-        return await this.ormRepositorio.findOne({
-            where: { email }
-        });
-    }
-
     async buscarPorId(id: string): Promise<Material | undefined> {
         return await this.ormRepositorio.findOne(id);
     }
