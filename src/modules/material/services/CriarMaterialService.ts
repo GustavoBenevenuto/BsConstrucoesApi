@@ -1,8 +1,8 @@
 import ICriarInformacaoMaterialDTO from "../dtos/ICriarInformacaoMaterialDTO";
 import ICriarMaterialDTO from "../dtos/ICriarMaterialDTO";
 import Material from "../models/Material";
+import { IInformacaoMaterialRepository } from "../repositories/IInformacaoMaterialRepository";
 import { IMaterialRepository } from "../repositories/IMaterialRepository";
-import InformacaoMaterialRepository from "../repositories/typeorm/InformacaoMaterialRepository";
 
 interface IMaterialRetornoService {
     material: Material
@@ -13,7 +13,7 @@ interface ICriarMaterialInformacaoMaterialDTO extends ICriarMaterialDTO {
 }
 
 export class CriarMaterialService {
-    constructor(private materialRepository: IMaterialRepository, private informacaoMaterialRepository: InformacaoMaterialRepository) { }
+    constructor(private materialRepository: IMaterialRepository, private informacaoMaterialRepository: IInformacaoMaterialRepository) { }
 
     async execute({ nome, descricao, atributos, imagem, informacaoMaterial }: ICriarMaterialInformacaoMaterialDTO): Promise<IMaterialRetornoService> {
         const material = await this.materialRepository.create({
