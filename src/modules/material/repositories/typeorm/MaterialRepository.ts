@@ -24,8 +24,8 @@ export default class MaterialRepository implements IMaterialRepository {
         return await this.ormRepositorio.findOne(id);
     }
 
-    async create({ nome, descricao, imagem, preco, atributos }: ICriarMaterialDTO): Promise<Material> {
-        const material = this.ormRepositorio.create({ nome, descricao, imagem, preco, atributos });
+    async create({ nome, descricao, imagem, atributos }: ICriarMaterialDTO): Promise<Material> {
+        const material = this.ormRepositorio.create({ nome, descricao, imagem, atributos });
 
         return await this.ormRepositorio.save(material);
     }

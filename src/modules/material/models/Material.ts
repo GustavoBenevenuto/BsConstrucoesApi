@@ -15,15 +15,12 @@ export default class Material {
     @Column({ nullable: true })
     imagem?: string;
 
-    @Column({ nullable: false })
-    preco: number;
-
     @Column({ type: 'jsonb', nullable: false, default: () => "'[]'" })
     atributos?: IAtributos[];
 
-    @CreateDateColumn({ default: new Date() })
+    @CreateDateColumn({ nullable: false, default: new Date() })
     criado_em: Date;
 
-    @CreateDateColumn({ default: new Date() })
+    @CreateDateColumn({ nullable: false, default: new Date() })
     atualizado_em: Date;
 }

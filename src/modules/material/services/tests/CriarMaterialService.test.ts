@@ -17,7 +17,6 @@ describe('Serviço: CriarMaterial', () => {
         const { material } = await criarMaterialService.execute({
             nome: 'Martelo',
             descricao: 'Martelo de cosntrução',
-            preco: 12,
             atributos: [
                 { cahve: 'Cabo', valor: 'Aço', },
                 { cahve: 'Peso', valor: '3.5 KG', },

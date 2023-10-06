@@ -5,5 +5,4 @@ export default interface ICriarMaterialDTO {
     descricao: string,
     imagem?: string,
     atributos?: IAtributos[],
-    preco: number,
 } 

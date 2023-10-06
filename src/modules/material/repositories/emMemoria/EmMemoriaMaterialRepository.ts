@@ -15,13 +15,12 @@ export class EmMemoriaMaterialRepository implements IMaterialRepository {
         return material
     }
 
-    async create({ nome, descricao, imagem, atributos, preco }: ICriarMaterialDTO): Promise<Material> {
+    async create({ nome, descricao, imagem, atributos, }: ICriarMaterialDTO): Promise<Material> {
         const material = {
             id: randomUUID(),
             descricao,
             imagem,
             atributos,
-            preco,
             criado_em: new Date(),
             atualizado_em: new Date(),
         } as Material

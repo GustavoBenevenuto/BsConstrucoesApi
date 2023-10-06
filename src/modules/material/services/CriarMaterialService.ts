@@ -9,11 +9,10 @@ interface IMaterialRetornoService {
 export class CriarMaterialService {
     constructor(private materialRepository: IMaterialRepository) { }
 
-    async execute({ nome, descricao, preco, atributos, imagem }: ICriarMaterialDTO): Promise<IMaterialRetornoService> {
+    async execute({ nome, descricao, atributos, imagem }: ICriarMaterialDTO): Promise<IMaterialRetornoService> {
         const material = await this.materialRepository.create({
             nome,
             descricao,
-            preco,
             atributos,
             imagem,
         })
