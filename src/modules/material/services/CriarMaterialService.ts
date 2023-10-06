@@ -29,8 +29,8 @@ export class CriarMaterialService {
             quantidade: informacaoMaterial.quantidade
         })
 
-        material.informacaoMaterial = infoMaterial
-        delete material.informacaoMaterial.material
+        material.informacao_material = infoMaterial
+        delete material.informacao_material.material
 
         return {
             material

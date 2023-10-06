@@ -15,7 +15,7 @@ export class BuscarMaterialService {
         if (material) {
             const informacaoInformacaoMaterial = await this.informacaoMaterialRepository.buscarPorIdMaterial(material.id)
             if (informacaoInformacaoMaterial) {
-                material.informacaoMaterial = informacaoInformacaoMaterial
+                material.informacao_material = informacaoInformacaoMaterial
             }
         }
 
@@ -32,7 +32,7 @@ export class BuscarMaterialService {
             materiais.map((async material => {
                 const informacaoInformacaoMaterial = await this.informacaoMaterialRepository.buscarPorIdMaterial(material.id)
                 if (informacaoInformacaoMaterial) {
-                    material.informacaoMaterial = informacaoInformacaoMaterial
+                    material.informacao_material = informacaoInformacaoMaterial
                 }
             }))
         )

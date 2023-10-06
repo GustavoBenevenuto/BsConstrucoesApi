@@ -20,7 +20,7 @@ export default class Material {
     atributos?: IAtributos[];
 
     @OneToOne(type => InformacaoMaterial, material => Material)
-    informacaoMaterial?: InformacaoMaterial
+    informacao_material?: InformacaoMaterial
 
     @CreateDateColumn({ nullable: false, default: () => 'CURRENT_TIMESTAMP' })
     criado_em: Date;
