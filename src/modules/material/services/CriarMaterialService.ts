@@ -22,7 +22,7 @@ export class CriarMaterialService {
             atributos,
             imagem,
         })
-        console.log('aqqq')
+
         const infoMaterial = await this.informacaoMaterialRepository.create({
             material,
             preco: informacaoMaterial.preco,
