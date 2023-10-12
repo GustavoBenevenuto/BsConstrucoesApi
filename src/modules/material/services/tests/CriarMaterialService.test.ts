@@ -14,7 +14,7 @@ describe('Serviço: CriarMaterial', () => {
     });
 
     it('Deve ser possível cadastrar um material', async () => {
-        const { material } = await criarMaterialService.execute({
+        const material = await criarMaterialService.execute({
             nome: 'Martelo',
             descricao: 'Martelo de cosntrução',
             atributos: [
